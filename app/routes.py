@@ -1,13 +1,11 @@
-from flask import render_template
+from flask import render_template, flash, redirect
 from app import app
+from app.forms import RegisterForm, SignInForm, CarForm
 
 @app.route('/')
 def index():
-    cdn={
-        'locations':('restaurant', 'brewery'),
-        'foods':['pizza', 'tacos', 'french fries', 'nachos']
-    }
-    return render_template('index.jinja', cdn=cdn, title='Home')
+    form = CarForm()
+    return render_template('index.jinja', car_form=form, title='Home')
 
 @app.route('/about')
 def about():
@@ -15,11 +13,15 @@ def about():
 
 @app.route('/log_in')
 def log_in():
-    return render_template('log_in.jinja')
+    form = SignInForm()
+    return render_template('log_in.jinja', sign_in_form = form)
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('register.jinja')
+    form = RegisterForm()
+    if form.validate_on_submit:
+         flash(f'Request to register {form.username} successful!')
+    return render_template('register.jinja', form=form)
 
 @app.route('/blog')
 def blog():

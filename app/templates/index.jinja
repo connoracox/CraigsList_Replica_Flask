@@ -1,13 +1,29 @@
 {% extends "base.jinja" %}
 
 {% block content %}
-    <h2>CDN 109</h2>
-    <h2>Locations:</h2>
-    {% for location in cdn.locations %}
-        <span>{{ location }} </span>
-    {% endfor %}
-    <h2>Menu Options:</h2>
-    {% for food in cdn.foods %}
-        <p>{{ food }}</p>
-    {% endfor %}
+    <h2>Welcome to Connor's List</h2>
+    <form action=""method="post">
+        {{ form.hidden_tag() }}
+        <p>
+        {{ car_form.make.label }}<br>
+        {{ car_form.make(size=32) }}
+        </p>
+        <p>
+        {{ car_form.model.label }}<br>
+        {{ car_form.model(size=32) }}
+        </p>
+        <p>
+        {{ car_form.year.label }}<br>
+        {{ car_form.year(size=32) }}
+        </p>
+        <p>
+        {{ car_form.color.label }}<br>
+        {{ car_form.color(size=32) }}
+        </p>
+        <p>
+        {{ car_form.price.label }}<br>
+        {{ car_form.price(size=32) }}
+        </p>
+        <p>{{ car_form.submit(class='btn btn-primary') }}</p>
+    </form>
 {% endblock %}
