@@ -3,7 +3,7 @@
 {% block content %}
     <h2>Welcome to Connor's List</h2>
     <form action=""method="post">
-        {{ form.hidden_tag() }}
+        {{ car_form.hidden_tag() }}
         <p>
         {{ car_form.make.label }}<br>
         {{ car_form.make(size=32) }}
