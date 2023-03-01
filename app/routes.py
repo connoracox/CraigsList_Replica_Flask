@@ -19,8 +19,9 @@ def log_in():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
          flash(f'Request to register {form.username} successful!')
+         return redirect('/')
     return render_template('register.jinja', form=form)
 
 @app.route('/blog')
