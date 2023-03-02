@@ -32,3 +32,7 @@ class Car(db.Model):
 
     def __repr__(self):
         return f'<Car {self. make}{self.model}>'
+    
+    def commit(self):
+        db.session.add(self)
+        db.session.commit()

@@ -3,9 +3,21 @@ from app import app, db
 from app.forms import RegisterForm, SignInForm, CarForm
 from app.models import User
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     form = CarForm()
+    if form.validate_on_submit():
+        make= form.make.data
+        model= form.model.data
+        year= form.year.data
+        color= form.color.data
+        price= form.price.data
+        c = User(make=make,model=model,year=year,color=color,price=price)
+        #  db.session.add(u)
+        #  db.session.commit()
+        c.commit()
+        flash(f'Car: {make} {model} successfully added!')
+        return redirect('/')
     return render_template('index.jinja', car_form=form, title='Home')
 
 @app.route('/about')
