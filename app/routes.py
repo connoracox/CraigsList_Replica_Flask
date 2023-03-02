@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect
 from app import app, db
 from app.forms import RegisterForm, SignInForm, CarForm
-from app.models import User
+from app.models import User, Car
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -12,7 +12,7 @@ def index():
         year= form.year.data
         color= form.color.data
         price= form.price.data
-        c = User(make=make,model=model,year=year,color=color,price=price)
+        c = Car(make=make,model=model,year=year,color=color,price=price)
         #  db.session.add(u)
         #  db.session.commit()
         c.commit()
