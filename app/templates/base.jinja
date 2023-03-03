@@ -24,6 +24,9 @@
     {% endif %}
     {% endwith %}
     <h1>Connor's List</h1>
+    {% if current_user.is_active %}
+        <p>Greetings {{ current_user.username }}</p>
+    {% endif %}
     {% block content %}
 
     {% endblock %}
